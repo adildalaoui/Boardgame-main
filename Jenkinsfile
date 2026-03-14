@@ -31,7 +31,11 @@ post {
         build job: 'job-2'
         }
     }
-post {
+post { 
+    success {
+        build job: 'job-2'
+    }
+
     always {
         script {
             def jobName = env.JOB_NAME
@@ -51,17 +55,16 @@ post {
             </div>
             </body>
             </html>
-        """
+            """
 
-        emailext (
-            subject: "${jobName} - Build ${buildNumber} - ${pipelineStatus.toUpperCase()}",
-            body: body,
-            to: 'adil.dalaoui@yahoo.fr',
-            from: 'adil.dalaoui@yahoo.fr',
-            replyTo: 'adil.dalaoui@yahoo.fr',
-            mimeType: 'text/html'
-        )
-       }
-     }
+            emailext (
+                subject: "${jobName} - Build ${buildNumber} - ${pipelineStatus.toUpperCase()}",
+                body: body,
+                to: 'adil.dalaoui@yahoo.fr',
+                from: 'adil.dalaoui@yahoo.fr',
+                replyTo: 'adil.dalaoui@yahoo.fr',
+                mimeType: 'text/html'
+            )
+        }
     }
 }
