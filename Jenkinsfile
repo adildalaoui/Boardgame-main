@@ -26,4 +26,9 @@ pipeline {
             }
         }
     }
+post { 
+    success {
+        build job: 'job-2'
+        }
+    }
 }
